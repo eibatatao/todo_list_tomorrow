@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:tarefas/data/database.dart';
+import 'package:tarefas/views/sobre_mim.dart';
 import 'package:tarefas/util/caixa.dart';
 import 'package:tarefas/util/tarefas.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
+  // ignore: unused_field
   final _controller = TextEditingController();
 
   @override
@@ -78,17 +80,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.blue.shade200,
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.search),
-          onPressed: () {
-            return;
-          },
-        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.info_outline_rounded),
             onPressed: () {
-              return;
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SobreMim()),
+              );
             },
           )
         ],
@@ -109,10 +108,8 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      body: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          ListView.builder(
+      body: Stack(alignment: Alignment.bottomCenter, children: [
+        ListView.builder(
           itemCount: db.tarefasLista.length,
           itemBuilder: (context, index) {
             return Tarefas(
@@ -123,8 +120,7 @@ class _HomePageState extends State<HomePage> {
             );
           },
         ),
-        ]
-      ),
+      ]),
     );
   }
 }

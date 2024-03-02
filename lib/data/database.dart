@@ -1,11 +1,11 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-class Database{
+class Database {
   List tarefasLista = [];
 
   final _caixa = Hive.box('caixa');
 
-  void createInitialData(){
+  void createInitialData() {
     tarefasLista = [
       ['Estudar', false],
       ['Fazer exercícios', false],
@@ -20,11 +20,11 @@ class Database{
     ];
   }
 
-  void loadData(){
-      tarefasLista = _caixa.get('tarefasLista');
+  void loadData() {
+    tarefasLista = _caixa.get('tarefasLista');
   }
 
-  void updateData(){
+  void updateData() {
     _caixa.put('tarefasLista', tarefasLista);
   }
 }
